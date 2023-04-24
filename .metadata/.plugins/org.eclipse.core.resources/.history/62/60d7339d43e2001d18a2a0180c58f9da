@@ -1,0 +1,5 @@
+package com.aws.api.main;
+
+public class MainController {
+
+}
