@@ -1,7 +1,6 @@
-package com.aws.api.main;
+package com.aws.api.user;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1")
-public class MainController {
+public class UserController {
 	
 	@Autowired
-	MainService mainService;
-
-	@GetMapping("/list")
-    public List<Map<String, Object>> getList() {
-		return mainService.getList();
+	UserService userService;
+	
+	@GetMapping("/users/{userId}/{password}")
+    public Map<String, Object> login(@PathVariable String userId, @PathVariable String password) {
+		return userService.login(userId, password);
     }
+
 }
