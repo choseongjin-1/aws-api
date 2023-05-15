@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import com.aws.api.utils.EmailUtil;
 import com.aws.api.utils.ResponseUtils;
 
 @Service
@@ -15,6 +16,9 @@ public class UserService {
 	
 	@Autowired
 	UserMapper userMapper;
+	
+	@Autowired
+	EmailUtil emailUtil;
 	
 	@Autowired
 	ResponseUtils responsUtils;
@@ -63,11 +67,27 @@ public class UserService {
 	public Map<String, Object> checkDuplicateId(String userId) throws Exception {
 		
 		int result = userMapper.checkDuplicateId(userId);
-		if (1 > result) {
+		if (0 < result) {
 			return responsUtils.makeFailResponse("");
 		}
 		
 		return responsUtils.makeSuccessResponse("");
+	}
+	
+	/**
+	 * 이메일 인증
+	 * @param email
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> autificateEmail(String email) throws Exception {
+		
+		String authNumber = emailUtil.sendEmail(email);
+		if (ObjectUtils.isEmpty(authNumber)) {
+			return responsUtils.makeFailResponse("");
+		}
+		
+		return responsUtils.makeSuccessResponse(authNumber);
 	}
 
 }

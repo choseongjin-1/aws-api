@@ -17,9 +17,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	UserMapper userMapper;
-	
 	/**
 	 * 로그인
 	 * @param param
@@ -52,5 +49,16 @@ public class UserController {
     public Map<String, Object> checkDuplicateId(@PathVariable String userId) throws Exception {
 		return userService.checkDuplicateId(userId);
     }
+	
+	/**
+	 * 이메일 인증
+	 * @param email
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping("/autificateEmail/{email}")
+	public Map<String, Object> autificateEmail(@PathVariable String email) throws Exception {
+		return userService.autificateEmail(email);
+	}
 
 }
