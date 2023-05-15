@@ -2,17 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aws.api.user.UserMapper">
 	
-	<select id="login" resultType="CamelHashMap">
+	<select id="signin" resultType="CamelHashMap">
 		/** UserMapper.login **/
         select 
 			user_srno
 			, user_id
 			, password
+			, web_token
+			, user_nm
 		from  
-			sj_community.tb_user tu
+			sj_community.tb_user
 		where 1=1
 		and user_id = #{username}
 		and password  = #{password}
+    </select>
+    
+    <insert id="signup">
+    	/** UserMapper.signup **/
+    	<selectKey keyProperty="userSrno" resultType="int" order="BEFORE">
+			select coalesce(max(user_srno),0) + 1 from tb_user
+		</selectKey>
+
+    	insert into sj_community.tb_user (
+    		user_srno,
+    		user_id,
+    		passwd,
+    		user_nm
+    		web_token,
+    	)
+    	values (
+    		#{userSrno}
+    		,#{userId}
+    		,#{passwd}
+    		,#{userNm}
+    		,#{webToken}
+    	)
+    </insert>
+    
+    <select id="checkDuplicateId" resultType="int">
+		/** UserMapper.login **/
+        select 
+			count(*)
+		from  
+			sj_community.tb_user
+		where 1=1
+		and user_id = #{username}
     </select>
 	
 </mapper>
