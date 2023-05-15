@@ -20,20 +20,20 @@
     <insert id="signup">
     	/** UserMapper.signup **/
     	<selectKey keyProperty="userSrno" resultType="int" order="BEFORE">
-			select coalesce(max(user_srno),0) + 1 from tb_user
+			select coalesce(max(user_srno),0) + 1 from sj_community.tb_user
 		</selectKey>
 
     	insert into sj_community.tb_user (
-    		user_srno,
-    		user_id,
-    		passwd,
-    		user_nm
-    		web_token,
+    		user_srno
+    		,user_id
+    		,password
+    		,user_nm
+    		,web_token
     	)
     	values (
     		#{userSrno}
     		,#{userId}
-    		,#{passwd}
+    		,#{password}
     		,#{userNm}
     		,#{webToken}
     	)
