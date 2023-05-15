@@ -1,11 +1,10 @@
 package com.aws.api.user;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +15,9 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/users/{userId}/{password}")
-    public Map<String, Object> login(@PathVariable String userId, @PathVariable String password) {
-		return userService.login(userId, password);
+	@PostMapping("/users")
+    public Map<String, Object> login(@RequestBody Map<String, Object> param) throws Exception {
+		return userService.login(param);
     }
 
 }
