@@ -29,6 +29,7 @@
     		,password
     		,user_nm
     		,web_token
+    		,email
     	)
     	values (
     		#{userSrno}
@@ -36,6 +37,7 @@
     		,#{password}
     		,#{userNm}
     		,#{webToken}
+    		,#{email}
     	)
     </insert>
     
