@@ -3,6 +3,7 @@ package com.aws.api.user;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,7 +48,7 @@ public class UserController {
 	 * @return
 	 * @throws Exception
 	 */
-	@PostMapping("/checkDuplicateId/{userId}")
+	@GetMapping("/checkDuplicateId/{userId}")
     public Map<String, Object> checkDuplicateId(@PathVariable String userId) throws Exception {
 		return userService.checkDuplicateId(userId);
     }
