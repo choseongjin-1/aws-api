@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aws.api.sign.SignMapper">
+	
+	<select id="signin" resultType="CamelHashMap">
+		/** SignMapper.signin **/
+        select 
+			user_srno
+			, user_id
+			, password
+			, web_token
+			, user_nm
+		from  
+			sj_community.tb_user
+		where 1=1
+		and user_id = #{username}
+    </select>
+    
+    <update id="updateJwtToken" parameterType="hashmap">
+		/** SignMapper.updateJwtToken **/
+		update 
+			sj_community.tb_user
+		set 
+			web_token = #{webToken}
+			<if test='fcmToken !=null and fcmToken != ""'>
+			,fcm_token = #{fcmToken}
+			</if>
+		where user_id = #{username}
+	</update>
+	
+	<select id="selectUserByToken" resultType="CamelHashMap">
+		/** SignMapper.selectUserByToken **/
+        select 
+			user_srno
+			, user_id
+			, password
+			, web_token
+			, user_nm
+		from  
+			sj_community.tb_user
+		where 1=1
+		and web_token = #{webToken}
+    </select>
+    
+    <insert id="signup">
+    	/** SignMapper.signup **/
+    	<selectKey keyProperty="userSrno" resultType="int" order="BEFORE">
+			select coalesce(max(user_srno),0) + 1 from sj_community.tb_user
+		</selectKey>
+
+    	insert into sj_community.tb_user (
+    		user_srno
+    		,user_id
+    		,password
+    		,user_nm
+    		,web_token
+    		,email
+    	)
+    	values (
+    		#{userSrno}
+    		,#{userId}
+    		,#{password}
+    		,#{userNm}
+    		,#{webToken}
+    		,#{email}
+    	)
+    </insert>
+   
+	
+</mapper>

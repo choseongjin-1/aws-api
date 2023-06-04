@@ -18,28 +18,6 @@ public class UserController {
 	UserService userService;
 	
 	/**
-	 * 로그인
-	 * @param param
-	 * @return
-	 * @throws Exception
-	 */
-	@PostMapping("/signin")
-    public Map<String, Object> signin(@RequestBody Map<String, Object> param) throws Exception {
-		return userService.signin(param);
-    }
-	
-	/**
-	 * 회원가입
-	 * @param param
-	 * @return
-	 * @throws Exception
-	 */
-	@PostMapping("/signup")
-    public Map<String, Object> signup(@RequestBody Map<String, Object> param) throws Exception {
-		return userService.signup(param);
-    }
-	
-	/**
 	 * 아이디 중복체크
 	 * @param userId
 	 * @return
