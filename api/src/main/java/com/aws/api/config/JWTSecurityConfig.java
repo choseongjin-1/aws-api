@@ -59,7 +59,7 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers(
 					"/css/**", "/fonts/**", "/js/**", "/img/**","/uploads/**","**/favicon.ico"
-					,"/v1/signin", "v1/signup", "v1/checkDuplicateId/{userId}", "v1/autificateEmail/{email}"
+					,"/v1/signin", "/v1/signup", "/v1/checkDuplicateId/{userId}", "/v1/autificateEmail/{email}"
 				).permitAll()
 				.antMatchers(HttpMethod.OPTIONS, "/v1/**").permitAll()
 				// all other requests need to be authenticated

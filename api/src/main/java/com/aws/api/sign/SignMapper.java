@@ -18,7 +18,7 @@ public interface SignMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String, Object> updateJwtToken(Map<String, Object> param) throws Exception;
+	public int updateJwtToken(Map<String, Object> param) throws Exception;
 	
 	/**
 	 * 토큰으로 사용자정보 조회

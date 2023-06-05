@@ -62,7 +62,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		if(member == null) {
 			throw new UnauthorizedException("사용 할 수 없는 토큰입니다.");
 		} else {
-			return new User((String)member.get("userId"), (String)member.get("userPwd"), new ArrayList<>());
+			return new User((String)member.get("userId"), (String)member.get("password"), new ArrayList<>());
 		}
 		
 	}

@@ -66,7 +66,11 @@ public class SignService {
 			Map<String, Object> updateParam = new HashMap<String, Object>();
 			updateParam.put("username", userDetails.getUsername());
 			updateParam.put("webToken", webToken);
-			signMapper.updateJwtToken(updateParam);
+			
+			int updateRtn = signMapper.updateJwtToken(updateParam);
+			if (updateRtn < 1) {
+				return responsUtils.makeFailResponse(webToken);
+			}
 		}
 		
         return responsUtils.makeSuccessResponse(webToken);

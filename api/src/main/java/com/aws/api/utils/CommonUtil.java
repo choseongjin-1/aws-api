@@ -1,5 +1,8 @@
 package com.aws.api.utils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,5 +17,16 @@ public class CommonUtil {
         generator.setSeed(System.currentTimeMillis());
         return generator.nextInt(1000000) % 1000000;
     }
+	
+	/**
+	 * 오늘날짜
+	 * @return
+	 */
+	public static String getToday() {
+		LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currentDate.format(formatter);
+        return formattedDate;
+	}
 
 }
