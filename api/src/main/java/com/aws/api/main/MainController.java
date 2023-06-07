@@ -23,9 +23,9 @@ public class MainController {
 	 * 리스트 가져오기
 	 * @return
 	 */
-	@GetMapping("/selectList/{userSrno}")
-    public List<Map<String, Object>> selectList(@PathVariable String userSrno) throws Exception {
-		return mainService.selectList(userSrno);
+	@GetMapping("/selectList/{keyword}")
+    public List<Map<String, Object>> selectList(@PathVariable String keyword) throws Exception {
+		return mainService.selectList(keyword);
     }
 	
 	/**

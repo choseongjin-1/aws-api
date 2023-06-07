@@ -10,7 +10,7 @@ public interface MainMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, Object>> selectList(String userSrno) throws Exception;
+	public List<Map<String, Object>> selectList(String keyword) throws Exception;
 	
 	/**
 	 * 리스트 등록

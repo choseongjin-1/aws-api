@@ -26,8 +26,8 @@ public class MainService {
 	 * 리스트 가져오기
 	 * @return
 	 */
-	public List<Map<String, Object>> selectList(String userSrno) throws Exception {
-        return mainMapper.selectList(userSrno);
+	public List<Map<String, Object>> selectList(String keyword) throws Exception {
+        return mainMapper.selectList(keyword);
 	}
 	
 	/**

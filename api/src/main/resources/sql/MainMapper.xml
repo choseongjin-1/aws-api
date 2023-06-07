@@ -14,7 +14,9 @@
 		from  
 			sj_community.tb_list
 		where 1=1
-		and user_srno = CAST (#{userSrno} AS INTEGER)
+		<if test='keyword != "isEmptyKeyword!!"'>
+			and list_subject like '%'||#{keyword}||'%'
+ 		</if>
 		and valid_yn = 'Y'
     </select>
 	
