@@ -4,25 +4,48 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aws.api.utils.CommonUtil;
+import com.aws.api.jwt.JwtTokenUtil;
+import com.aws.api.utils.ResponseUtils;
 
 @Service
 public class MainService {
 	
-	public List<Map<String, Object>> getList() {
+	@Autowired
+	ResponseUtils responseUtils;
+	
+	@Autowired
+	JwtTokenUtil jwtTokenUtil;
+	
+	@Autowired
+	MainMapper mainMapper;
+	
+	/**
+	 * 리스트 가져오기
+	 * @return
+	 */
+	public List<Map<String, Object>> selectList(String userSrno) throws Exception {
+        return mainMapper.selectList(userSrno);
+	}
+	
+	/**
+	 * 리스트 등록
+	 * 
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> insertList(Map<String, Object> param) throws Exception {
+		param.put("regId", jwtTokenUtil.getUserId());
+		param.put("validYn", "Y");
 		
-		List<Map<String, Object>> resultList = new ArrayList<>();
-		Map<String, Object> resultMap = new HashMap<>();
-		resultMap.put("no", 1);
-		resultMap.put("subject", "게시판데이터1");
-		resultMap.put("content", "게시판데이터1본문");
-		resultMap.put("id", "seongjin");
-		resultMap.put("regDt", CommonUtil.getToday());
-		resultList.add(resultMap);
-        return resultList;
-        
+		int result = mainMapper.insertList(param);
+		if (result < 1) {
+			return responseUtils.makeFailResponse(param);
+		}
+		return responseUtils.makeSuccessResponse("등록이 완료되었습니다.");
 	}
 
 }

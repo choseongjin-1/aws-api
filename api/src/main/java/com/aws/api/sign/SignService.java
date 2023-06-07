@@ -73,7 +73,8 @@ public class SignService {
 			}
 		}
 		
-        return responsUtils.makeSuccessResponse(webToken);
+		Map<String, Object> result = signMapper.selectUserByToken(webToken);
+        return responsUtils.makeSuccessResponse(result);
 	}
 	
 	/**
