@@ -50,6 +50,19 @@
     	)
     </insert>
     
+    <update id="updateList" parameterType="hashmap">
+		/** MainMapper.updateList **/
+		update 
+			sj_community.tb_list
+		set 
+			list_subject = #{listSubject}
+			,list_content = #{listContent}
+			,reg_dt = to_char(now()::date, 'yyyymmdd')
+		where 1=1
+		and user_srno = CAST(#{userSrno} AS NUMERIC)
+		and list_srno = CAST(#{listSrno} AS NUMERIC)
+	</update>
+    
     <update id="deleteList" parameterType="hashmap">
 		/** MainMapper.deleteList **/
 		update 
@@ -61,6 +74,5 @@
 		and user_srno = CAST(#{userSrno} AS NUMERIC)
 		and list_srno = CAST(#{listSrno} AS NUMERIC)
 	</update>
-   
 	
 </mapper>

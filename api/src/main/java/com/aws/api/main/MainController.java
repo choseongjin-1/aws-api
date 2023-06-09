@@ -41,6 +41,17 @@ public class MainController {
 	}
 	
 	/**
+	 * 리스트 수정
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping("/updateList")
+	public Map<String, Object> updateList(@RequestBody Map<String, Object> param) throws Exception {
+		return mainService.updateList(param);
+	}
+	
+	/**
 	 * 리스트 삭제
 	 * @param param
 	 * @return

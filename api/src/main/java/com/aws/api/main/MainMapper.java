@@ -20,6 +20,14 @@ public interface MainMapper {
 	 */
 	public int insertList(Map<String, Object> parma) throws Exception;
 	
+	/**
+	 * 리스트 수정
+	 * @param parma
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateList(Map<String, Object> parma) throws Exception;
+	
 	
 	/**
 	 * 리스트 삭제
