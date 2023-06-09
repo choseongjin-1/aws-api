@@ -39,4 +39,16 @@ public class MainController {
 	public Map<String, Object> insertList(@RequestBody Map<String, Object> param) throws Exception {
 		return mainService.insertList(param);
 	}
+	
+	/**
+	 * 리스트 삭제
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping("/deleteList")
+	public Map<String, Object> deleteList(@RequestBody Map<String, Object> param) throws Exception {
+		return mainService.deleteList(param);
+	}
+	
 }

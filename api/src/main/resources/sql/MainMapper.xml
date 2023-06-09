@@ -46,9 +46,21 @@
     		,#{listContent}
     		,#{regId}
     		,to_char(now()::date, 'yyyymmdd')
-    		,#{validYn}
+    		,'Y'
     	)
     </insert>
+    
+    <update id="deleteList" parameterType="hashmap">
+		/** MainMapper.deleteList **/
+		update 
+			sj_community.tb_list
+		set 
+			reg_dt = to_char(now()::date, 'yyyymmdd')
+			,valid_yn = 'N'
+		where 1=1
+		and user_srno = CAST(#{userSrno} AS NUMERIC)
+		and list_srno = CAST(#{listSrno} AS NUMERIC)
+	</update>
    
 	
 </mapper>

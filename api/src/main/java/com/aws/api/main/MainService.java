@@ -39,13 +39,28 @@ public class MainService {
 	 */
 	public Map<String, Object> insertList(Map<String, Object> param) throws Exception {
 		param.put("regId", jwtTokenUtil.getUserId());
-		param.put("validYn", "Y");
 		
 		int result = mainMapper.insertList(param);
 		if (result < 1) {
 			return responseUtils.makeFailResponse(param);
 		}
 		return responseUtils.makeSuccessResponse("등록이 완료되었습니다.");
+	}
+	
+	
+	/**
+	 * 리스트 삭제
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> deleteList(Map<String, Object> param) throws Exception {
+		
+		int result = mainMapper.deleteList(param);
+		if (result < 1) {
+			return responseUtils.makeFailResponse(param);
+		}
+		return responseUtils.makeSuccessResponse("삭제가 완료되었습니다.");
 	}
 
 }

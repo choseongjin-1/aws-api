@@ -19,5 +19,14 @@ public interface MainMapper {
 	 * @throws Exception
 	 */
 	public int insertList(Map<String, Object> parma) throws Exception;
+	
+	
+	/**
+	 * 리스트 삭제
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteList(Map<String, Object> parma) throws Exception;
 
 }
