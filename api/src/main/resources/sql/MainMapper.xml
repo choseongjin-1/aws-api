@@ -27,7 +27,7 @@
 			select 
 				coalesce(max(list_srno),0) + 1 
 			from sj_community.tb_list a
-			where a.user_srno = #{userSrno}
+			where a.user_srno = CAST(#{userSrno} AS NUMERIC)
 		</selectKey>
 
     	insert into sj_community.tb_list (

@@ -5,8 +5,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,5 +42,16 @@ public class SignController {
     public Map<String, Object> signup(@RequestBody Map<String, Object> param) throws Exception {
 		return signService.signup(param);
     }
+	
+	/**
+	 * 자동로그인에 대응하기위한 토큰 유저정보조회
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping("/selectUserByToken")
+	public Map<String, Object> selectUserByToken(@RequestHeader Map<String, String> param) throws Exception {
+		return signService.selectUserByToken(param);
+	}
 
 }

@@ -1,6 +1,5 @@
 package com.aws.api.sign;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +13,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.aws.api.jwt.JwtTokenUtil;
 import com.aws.api.jwt.JwtUserDetailsService;
@@ -108,6 +110,22 @@ public class SignService {
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
+	}
+	
+	/**
+	 * 자동로그인에 대응하기위한 토큰 유저정보조회
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> selectUserByToken(@RequestHeader Map<String, String> param) throws Exception {
+		String token = param.get("authorization").replace("Bearer ", "");
+		
+		Map<String, Object> result = signMapper.selectUserByToken(token);
+		if (ObjectUtils.isEmpty(result)) {
+			return responsUtils.makeFailResponse(param);
+		}
+		return responsUtils.makeSuccessResponse(result);
 	}
 
 }

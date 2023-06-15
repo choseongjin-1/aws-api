@@ -38,6 +38,7 @@ public class MainService {
 	 * @throws Exception
 	 */
 	public Map<String, Object> insertList(Map<String, Object> param) throws Exception {
+		param.put("regId", jwtTokenUtil.getUserId());
 		
 		int result = mainMapper.insertList(param);
 		if (result < 1) {
@@ -54,7 +55,6 @@ public class MainService {
 	 * @throws Exception
 	 */
 	public Map<String, Object> updateList(Map<String, Object> param) throws Exception {
-		
 		int result = mainMapper.updateList(param);
 		if (result < 1) {
 			return responseUtils.makeFailResponse(param);
