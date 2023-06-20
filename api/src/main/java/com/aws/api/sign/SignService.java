@@ -14,8 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.aws.api.jwt.JwtTokenUtil;
 import com.aws.api.jwt.JwtUserDetailsService;
@@ -118,7 +116,7 @@ public class SignService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String, Object> selectUserByToken(@RequestHeader Map<String, String> param) throws Exception {
+	public Map<String, Object> selectUserByToken(Map<String, String> param) throws Exception {
 		String token = param.get("authorization").replace("Bearer ", "");
 		
 		Map<String, Object> result = signMapper.selectUserByToken(token);
@@ -126,6 +124,22 @@ public class SignService {
 			return responsUtils.makeFailResponse(param);
 		}
 		return responsUtils.makeSuccessResponse(result);
+	}
+	
+	/**
+	 * 회원정보 수정
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> updateUser(Map<String, String> param) throws Exception {
+		param.put("password", bcryptEncoder.encode(param.get("password").toString()));
+		
+		int result = signMapper.updateUser(param);
+		if (result < 1) {
+			return responsUtils.makeFailResponse(param);
+		}
+		return responsUtils.makeSuccessResponse(param);
 	}
 
 }

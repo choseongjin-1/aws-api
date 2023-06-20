@@ -53,5 +53,16 @@ public class SignController {
 	public Map<String, Object> selectUserByToken(@RequestHeader Map<String, String> param) throws Exception {
 		return signService.selectUserByToken(param);
 	}
+	
+	/**
+	 * 회원정보 수정
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping("/updateUser")
+	public Map<String, Object> updateUser(@RequestBody Map<String, String> param) throws Exception {
+		return signService.updateUser(param);
+	}
 
 }

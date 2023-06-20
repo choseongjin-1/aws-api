@@ -23,7 +23,7 @@
     	/** CommentMapper.insertComment **/
     	<selectKey keyProperty="commentSrno" resultType="int" order="BEFORE">
 			select 
-				coalesce(max(list_srno),0) + 1 
+				coalesce(max(comment_srno),0) + 1 
 			from sj_community.tb_comment a
 			where 1=1
 			and a.user_srno = CAST(#{userSrno} AS NUMERIC)

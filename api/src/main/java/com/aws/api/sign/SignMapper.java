@@ -35,5 +35,13 @@ public interface SignMapper {
 	 * @throws Exception
 	 */
 	public int signup(Map<String, Object> param) throws Exception;
+	
+	/**
+	 * 회원정보 수정
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateUser(Map<String, String> param) throws Exception;
 
 }

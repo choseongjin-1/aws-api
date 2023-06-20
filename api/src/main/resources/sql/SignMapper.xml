@@ -65,6 +65,17 @@
     		,#{email}
     	)
     </insert>
+    
+    <update id="updateUser" parameterType="hashmap">
+		/** SignMapper.updateUser **/
+		update 
+			sj_community.tb_user
+		set 
+			user_nm = #{userNm}
+			,password = #{password}
+			,email = #{email}
+		where user_srno = CAST(#{userSrno} AS NUMERIC)
+	</update>
    
 	
 </mapper>
