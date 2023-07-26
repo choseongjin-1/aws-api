@@ -58,7 +58,7 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers(
-					"/css/**", "/fonts/**", "/js/**", "/img/**","/uploads/**","**/favicon.ico"
+					"/css/**", "/fonts/**", "/js/**", "/img/**","/uploads/**","**/favicon.ico", "/rgt/**"
 					,"/v1/signin", "/v1/signup", "/v1/checkDuplicateId/{userId}", "/v1/autificateEmail/{email}"
 				).permitAll()
 				.antMatchers(HttpMethod.OPTIONS, "/v1/**").permitAll()
