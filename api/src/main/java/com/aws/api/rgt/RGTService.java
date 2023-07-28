@@ -113,7 +113,7 @@ public class RGTService {
 		params.put("code", authorizationCode);
         params.put("client_id", clientId);
         params.put("client_secret", clientSecret);
-        params.put("redirect_uri", "http://localhost:8080");
+        params.put("redirect_uri", redirectUri);
         params.put("grant_type", "authorization_code");
 		
 		RequestBody formBody = RequestBody.create(MediaType.get("application/json; charset=utf-8"), params.toString());
