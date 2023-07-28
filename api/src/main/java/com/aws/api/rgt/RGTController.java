@@ -62,8 +62,9 @@ public class RGTController {
 	@PostMapping("/googleLogin")
 	public String googleLogin(@RequestBody Map<String, Object> param) throws Exception {
 		String authCode = param.get("code").toString();
+		String redirectUri = param.get("redirectUri").toString();
 		
-		return rgtService.googleLogin(authCode);
+		return rgtService.googleLogin(authCode, redirectUri);
 	}
 	
 }

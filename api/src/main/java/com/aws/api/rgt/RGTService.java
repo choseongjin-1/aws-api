@@ -95,8 +95,8 @@ public class RGTService {
 	 * @return
 	 * @throws Exception
 	 */
-	public String googleLogin(String authCode) throws Exception {
-		return getUserInfo(authCode);
+	public String googleLogin(String authCode, String redirectUri) throws Exception {
+		return getUserInfo(authCode, redirectUri);
 	}
 	
 	/**
@@ -105,7 +105,7 @@ public class RGTService {
 	 * @return
 	 * @throws Exception
 	 */
-	private String getToken(String authorizationCode) throws Exception {
+	private String getToken(String authorizationCode, String redirectUri) throws Exception {
 		
 		OkHttpClient client = new OkHttpClient();
 		
@@ -138,11 +138,11 @@ public class RGTService {
 	 * @return
 	 * @throws Exception
 	 */
-	private String getUserInfo(String code) throws Exception {
+	private String getUserInfo(String code, String redirectUri) throws Exception {
 		
 		OkHttpClient client = new OkHttpClient();
 		
-		String token = getToken(code);
+		String token = getToken(code, redirectUri);
 		if (token.isEmpty()) {
 			return "token not found error";
 		}
